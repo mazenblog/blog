@@ -458,12 +458,7 @@
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-section').forEach(el => el.classList.add('hidden'));
-            document.getElementById(`section-${tabId}`).classList.remove('hidden');
-
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition";
-            });
-            const activeBtn = document.getElementById(`nav-${tabId}`);
+            const target = document.getElementById(`section-${tabId}`); if (target) { target.classList.remove('hidden'); }  document.querySelectorAll('.nav-btn').forEach(btn => { btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition"; }); const activeBtn = document.getElementById(`nav-${tabId}`);
             if (activeBtn) {
                 activeBtn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold text-chenier-600 bg-chenier-50 transition";
             }
@@ -479,6 +474,7 @@
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             const icon = document.getElementById('mobile-menu-icon');
+            if (!menu || !icon) return;
             menu.classList.toggle('hidden');
             if (menu.classList.contains('hidden')) {
                 icon.className = "fas fa-bars text-xl";
@@ -490,6 +486,7 @@
         function renderHomeArticles() {
             const articles = getArticles().filter(a => a.status === 'Publié').slice(0, 3);
             const grid = document.getElementById('home-articles-grid');
+            if (!grid) return;
             grid.innerHTML = articles.map(art => `
                 <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 flex flex-col justify-between group hover:shadow-2xl transition">
                     <div>
@@ -519,6 +516,7 @@
         function renderActualitesList() {
             const articles = getArticles().filter(a => a.status === 'Publié');
             const container = document.getElementById('actualites-list');
+            if (!container) return;
             container.innerHTML = articles.map(art => `
                 <div class="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden flex flex-col md:flex-row gap-6 p-6 sm:p-8 items-center">
                     <div class="w-full md:w-1/3 h-56 rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0">
@@ -547,11 +545,13 @@
             
             const categories = ['all', ...new Set(articles.map(a => a.category))];
             const filterContainer = document.getElementById('article-categories-filter');
-            filterContainer.innerHTML = categories.map(cat => `
-                <button onclick="filterArticleCategory('${cat}')" class="art-cat-btn px-4 py-2 rounded-xl text-xs font-semibold transition ${currentFilterCategory === cat ? 'bg-chenier-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
-                    ${cat === 'all' ? 'Toutes' : cat}
-                </button>
-            `).join('');
+            if (filterContainer) {
+                filterContainer.innerHTML = categories.map(cat => `
+                    <button onclick="filterArticleCategory('${cat}')" class="art-cat-btn px-4 py-2 rounded-xl text-xs font-semibold transition ${currentFilterCategory === cat ? 'bg-chenier-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                        ${cat === 'all' ? 'Toutes' : cat}
+                    </button>
+                `).join('');
+            }
 
             let filtered = articles.filter(art => {
                 const matchesCat = currentFilterCategory === 'all' || art.category === currentFilterCategory;
@@ -560,6 +560,7 @@
             });
 
             const grid = document.getElementById('all-articles-grid');
+            if (!grid) return;
             if (filtered.length === 0) {
                 grid.innerHTML = `<div class="col-span-3 text-center py-16 text-slate-400">Aucun article ne correspond à votre recherche.</div>`;
                 return;
@@ -569,92 +570,4 @@
                 <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 flex flex-col justify-between group hover:shadow-2xl transition">
                     <div>
                         <div class="relative h-52 overflow-hidden bg-slate-100">
-                            <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80'">
-                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-white/90 backdrop-blur-md text-chenier-600 shadow-md">
-                                ${art.category}
-                            </span>
-                        </div>
-                        <div class="p-6">
-                            <div class="text-xs text-slate-400 mb-2 flex items-center gap-1.5">
-                                <i class="far fa-calendar-alt"></i> ${art.date}
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-chenier-600 transition line-clamp-2">${art.title}</h3>
-                            <p class="text-slate-600 text-sm line-clamp-3 mb-6">${art.summary}</p>
-                        </div>
-                    </div>
-                    <div class="px-6 pb-6 pt-0">
-                        <button onclick="openArticleDetail(${art.id})" class="inline-flex items-center gap-2 text-chenier-600 font-bold text-sm hover:text-chenier-700 transition">
-                            Lire l'article <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function filterArticleCategory(cat) {
-            currentFilterCategory = cat;
-            renderAllArticles();
-        }
-
-        function handleArticleSearch() {
-            currentSearchQuery = document.getElementById('article-search-input').value;
-            renderAllArticles();
-        }
-
-        function openArticleDetail(id) {
-            const articles = getArticles();
-            const art = articles.find(a => a.id === id);
-            if (!art) return;
-
-            const container = document.getElementById('article-detail-content');
-            container.innerHTML = `
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-chenier-50 text-chenier-600">${art.category}</span>
-                    <span class="text-xs text-slate-400 flex items-center gap-1.5"><i class="far fa-calendar-alt"></i> ${art.date}</span>
-                </div>
-                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 leading-tight">${art.title}</h1>
-                <div class="rounded-2xl overflow-hidden mb-8 h-80 sm:h-96 bg-slate-100 shadow-lg">
-                    <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80'">
-                </div>
-                <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4 text-base sm:text-lg">
-                    <p class="font-medium text-slate-900 text-lg mb-4">${art.summary}</p>
-                    <p>${art.content.replace(/\n/g, '<br>')}</p>
-                </div>
-            `;
-            switchTab('article-detail');
-        }
-
-        function renderGallery(category) {
-            const grid = document.getElementById('gallery-grid');
-            const filtered = category === 'all' ? galleryItems : galleryItems.filter(item => item.category === category);
-            
-            grid.innerHTML = filtered.map(item => `
-                <div onclick="openLightbox('${item.image}', '${item.title}')" class="group relative rounded-2xl overflow-hidden shadow-md bg-slate-100 h-64 cursor-pointer">
-                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
-                        <span class="text-white font-semibold text-sm">${item.title}</span>
-                    </div>
-                </div>
-            `).join('');
-
-            document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
-                btn.className = "gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-medium bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition";
-            });
-            event && event.target && (event.target.className = "gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-chenier-600 text-white shadow-md shadow-chenier-600/20 transition");
-        }
-
-        function filterGallery(cat) {
-            renderGallery(cat);
-        }
-
-        function openLightbox(imgSrc, caption) {
-            const modal = document.getElementById('lightbox-modal');
-            const img = document.getElementById('lightbox-img');
-            const cap = document.getElementById('lightbox-caption');
-            img.src = imgSrc;
-            cap.textContent = caption;
-            modal.classList.remove('hidden');
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox-modal').
+                            <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='
