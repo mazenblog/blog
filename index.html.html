@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - École André Chénier | Rabat</title>
+    <meta name="description" content="Découvrez le blog officiel de l'École André Chénier à Rabat. Un siècle d'histoire, actualités, vie scolaire, projets pédagogiques et galerie de notre établissement.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        chenier: {
+                            50: '#f0f6ff',
+                            100: '#e0ebfe',
+                            500: '#1d4ed8',
+                            600: '#1e40af',
+                            750: '#172554',
+                            gold: '#d97706',
+                            goldLight: '#f59e0b',
+                            goldDark: '#b45309'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .gold-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+        }
+        .blue-gradient {
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+        }
+        .hero-pattern {
+            background-color: #1e40af;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen selection:bg-chenier-gold selection:text-white">
+
+    <!-- Top Bar avec Localisation -->
+    <div class="bg-chenier-750 text-slate-300 text-xs py-2 px-4 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4 flex-wrap">
+                <span><i class="fas fa-map-marker-alt text-chenier-gold mr-1.5"></i> Quartier Hassan, Rabat 10000, Maroc</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-white/10 text-white">
+                    <i class="fas fa-graduation-cap mr-1"></i> AEFE & Patrimoine
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo & Nom : Blog -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('accueil')">
+                    <div class="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center shadow-lg shadow-amber-500/20 text-white font-black text-2xl tracking-tighter">
+                        AC
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-slate-900 block leading-tight">Blog</span>
+                        <span class="text-xs font-medium text-chenier-gold tracking-widest uppercase">École André Chénier</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center gap-1">
+                    <button onclick="switchTab('accueil')" id="nav-accueil" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold text-chenier-600 bg-chenier-50 transition">Accueil</button>
+                    <button onclick="switchTab('actualites')" id="nav-actualites" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition">Actualités</button>
+                    <button onclick="switchTab('viescolaire')" id="nav-viescolaire" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition">Vie Scolaire</button>
+                    <button onclick="switchTab('galerie')" id="nav-galerie" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition">Galerie</button>
+                    <button onclick="switchTab('articles')" id="nav-articles" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition">Articles</button>
+                    <button onclick="switchTab('apropos')" id="nav-apropos" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition">À propos</button>
+                </nav>
+
+                <!-- Actions Mobile Menu Button -->
+                <div class="flex items-center md:hidden">
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition focus:outline-none">
+                        <i id="mobile-menu-icon" class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <button onclick="switchTab('accueil'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-chenier-600 bg-chenier-50">Accueil</button>
+            <button onclick="switchTab('actualites'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Actualités</button>
+            <button onclick="switchTab('viescolaire'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Vie Scolaire</button>
+            <button onclick="switchTab('galerie'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Galerie</button>
+            <button onclick="switchTab('articles'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Articles</button>
+            <button onclick="switchTab('apropos'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">À propos</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow">
+
+        <!-- ================= SECTION ACCUEIL ================= -->
+        <section id="section-accueil" class="tab-section">
+            <!-- Hero Banner -->
+            <div class="hero-pattern relative text-white py-24 lg:py-32 overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-chenier-750/90 to-chenier-600/70 z-0"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-12">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-chenier-gold font-semibold text-xs mb-6">
+                            <i class="fas fa-landmark"></i> Plus d'un siècle d'histoire à Rabat
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                            Bienvenue sur le <span class="text-chenier-gold">Blog</span> de l'École André Chénier
+                        </h1>
+                        <p class="text-lg sm:text-xl text-slate-200 mb-8 font-light leading-relaxed">
+                            Nichée au cœur du quartier Hassan à deux pas du Bouregreg, notre école allie un patrimoine historique exceptionnel (fondée en 1923) à une pédagogie moderne et innovante.
+                        </p>
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                            <button onclick="switchTab('articles')" class="px-8 py-4 gold-gradient hover:opacity-95 text-white font-bold rounded-2xl shadow-xl shadow-amber-600/30 transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                                <i class="fas fa-book-open"></i> Lire l'article phare
+                            </button>
+                        </div>
+                    </div>
+                    <div class="w-full max-w-md lg:max-w-lg">
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 bg-white/5 backdrop-blur-sm group">
+                            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80" alt="École André Chénier" class="w-full h-auto object-cover transform group-hover:scale-105 transition duration-500">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 text-left">
+                                <span class="text-xs font-bold text-chenier-gold uppercase tracking-wider">Institution Historique</span>
+                                <h3 class="text-lg font-bold text-white mt-1">Quartier Hassan, Rabat (10000)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Highlights / Features -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20 mb-16">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition group">
+                        <div class="w-14 h-14 rounded-2xl bg-chenier-50 text-chenier-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-chenier-600 group-hover:text-white transition">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Héritage & Mémoire</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Depuis 1923, un repère générationnel incontournable, ancré dans le patrimoine de la ville.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition group">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-50 text-chenier-gold flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition">
+                            <i class="fas fa-globe-europe"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Réseau AEFE & Langues</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Environ 700 élèves de la petite section au CM2 apprenant le français, l'arabe et l'anglais dans un cadre multiculturel.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition group">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition">
+                            <i class="fas fa-broadcast-tower"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Projets Dynamiques</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Webradio animée par les enfants, spectacles, carnavals, flashmobs et défis sportifs et culturels au quotidien.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latest Articles Grid on Home -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+                    <div>
+                        <span class="text-chenier-gold font-bold text-xs uppercase tracking-widest block mb-2">Actualités & Histoire</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900">À la une</h2>
+                    </div>
+                    <button onclick="switchTab('articles')" class="inline-flex items-center gap-2 text-chenier-600 hover:text-chenier-700 font-bold text-sm bg-chenier-50 hover:bg-chenier-100 px-5 py-2.5 rounded-xl transition">
+                        Voir tous les articles <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div id="home-articles-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Dynamically injected from JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION ACTUALITÉS ================= -->
+        <section id="section-actualites" class="tab-section hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-chenier-gold font-bold text-xs uppercase tracking-widest block mb-2">Annonces & Événements</span>
+                    <h1 class="text-4xl font-extrabold text-slate-900 mb-4">Actualités de l'École</h1>
+                    <p class="text-slate-600 text-lg">Suivez la vie trépidante de notre établissement, des projets innovants aux fêtes scolaires.</p>
+                </div>
+                <div id="actualites-list" class="space-y-8 max-w-4xl mx-auto">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION VIE SCOLAIRE ================= -->
+        <section id="section-viescolaire" class="tab-section hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-chenier-gold font-bold text-xs uppercase tracking-widest block mb-2">Au cœur des classes</span>
+                    <h1 class="text-4xl font-extrabold text-slate-900 mb-4">La Vie Scolaire</h1>
+                    <p class="text-slate-600 text-lg">Webradio, ateliers artistiques, spectacles, sport et notre grand entretien publié chaque samedi !</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block p-3 rounded-2xl bg-chenier-50 text-chenier-600 text-xl mb-6">
+                                <i class="fas fa-microphone-alt"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 mb-4">Webradio & Interview Hebdomadaire</h3>
+                            <p class="text-slate-600 leading-relaxed mb-6">Les enfants animent leur propre webradio et s'exercent à la prise de parole. Retrouvez <strong>chaque samedi un nouvel interview exclusif</strong> mené avec les élèves, enseignants et intervenants de l'école.</p>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden h-48 bg-slate-100">
+                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" alt="Webradio" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block p-3 rounded-2xl bg-amber-50 text-chenier-gold text-xl mb-6">
+                                <i class="fas fa-theater-masks"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 mb-4">Spectacles, Carnivals & Flashmobs</h3>
+                            <p class="text-slate-600 leading-relaxed mb-6">Entre carnavals hauts en couleur, flashmobs mémorables et représentations théâtrales, l'expression artistique rythme joyeusement l'année scolaire.</p>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden h-48 bg-slate-100">
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="Spectacles" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION GALERIE ================= -->
+        <section id="section-galerie" class="tab-section hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-chenier-gold font-bold text-xs uppercase tracking-widest block mb-2">Moments forts</span>
+                    <h1 class="text-4xl font-extrabold text-slate-900 mb-4">Galerie Photos</h1>
+                    <p class="text-slate-600 text-lg">Explorez les souvenirs en images de notre école à Rabat.</p>
+                </div>
+                <!-- Gallery Filters -->
+                <div class="flex flex-wrap justify-center gap-3 mb-12">
+                    <button onclick="filterGallery('all')" class="gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-chenier-600 text-white shadow-md shadow-chenier-600/20 transition">Tous</button>
+                    <button onclick="filterGallery('classes')" class="gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-medium bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Classes</button>
+                    <button onclick="filterGallery('evenements')" class="gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-medium bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Événements</button>
+                    <button onclick="filterGallery('patrimoine')" class="gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-medium bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Patrimoine</button>
+                </div>
+                <!-- Gallery Grid -->
+                <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox Modal for Gallery -->
+        <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 hidden">
+            <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-chenier-gold transition focus:outline-none">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="max-w-4xl w-full text-center">
+                <img id="lightbox-img" src="" alt="" class="max-h-[80vh] mx-auto rounded-xl shadow-2xl object-contain mb-4">
+                <p id="lightbox-caption" class="text-white text-lg font-medium"></p>
+            </div>
+        </div>
+
+        <!-- ================= SECTION ARTICLES ================= -->
+        <section id="section-articles" class="tab-section hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-chenier-gold font-bold text-xs uppercase tracking-widest block mb-2">Publications complètes</span>
+                    <h1 class="text-4xl font-extrabold text-slate-900 mb-4">Tous les Articles</h1>
+                    <p class="text-slate-600 text-lg">Recherchez et filtrez l'ensemble des articles publiés par l'équipe de l'école.</p>
+                </div>
+                <!-- Search and Categories Filter Bar -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <div class="relative w-full md:w-96">
+                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="article-search-input" oninput="handleArticleSearch()" placeholder="Rechercher un article..." class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-chenier-600 text-sm">
+                    </div>
+                    <div id="article-categories-filter" class="flex flex-wrap gap-2 w-full md:w-auto">
+                        <button onclick="filterArticleCategory('all')" class="art-cat-btn px-4 py-2 rounded-xl text-xs font-semibold bg-chenier-600 text-white transition">Toutes les catégories</button>
+                    </div>
+                </div>
+                <!-- Articles Grid -->
+                <div id="all-articles-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION ARTICLE DÉTAIL (SINGLE) ================= -->
+        <section id="section-article-detail" class="tab-section hidden py-16">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button onclick="switchTab('articles')" class="inline-flex items-center gap-2 text-chenier-600 hover:text-chenier-700 font-semibold text-sm mb-8 bg-chenier-50 px-4 py-2 rounded-xl transition">
+                    <i class="fas fa-arrow-left"></i> Retour aux articles
+                </button>
+                <div id="article-detail-content" class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden p-8 sm:p-12">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION À PROPOS ================= -->
+        <section id="section-apropos" class="tab-section hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-chenier-gold font-bold text-xs uppercase tracking-widest block mb-2">Notre Établissement</span>
+                    <h1 class="text-4xl font-extrabold text-slate-900 mb-4">À propos de l'École André Chénier</h1>
+                    <p class="text-slate-600 text-lg">Implantée au cœur du quartier Hassan à Rabat, entre le Bouregreg et la tour Hassan.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                    <div class="space-y-6">
+                        <h2 class="text-2xl font-bold text-slate-900">Un patrimoine historique et pédagogique</h2>
+                        <p class="text-slate-600 leading-relaxed">
+                            Fondée en 1923 sous le nom d'école Charles de Foucauld avec le soutien du maréchal Lyautey, l'école est devenue au fil des décennies un repère incontournable à Rabat.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed">
+                            Aujourd'hui membre du réseau d'excellence de l'AEFE, elle accueille environ 700 élèves de la petite section au CM2 dans un cadre multilingue et stimulant (français, arabe, anglais).
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 pt-4">
+                            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+                                <span class="text-3xl font-extrabold text-chenier-600 block mb-1">Depuis 1923</span>
+                                <span class="text-xs font-semibold text-slate-500 uppercase">Histoire & Tradition</span>
+                            </div>
+                            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+                                <span class="text-3xl font-extrabold text-chenier-gold block mb-1">~700 Élèves</span>
+                                <span class="text-xs font-semibold text-slate-500 uppercase">PS au CM2 (AEFE)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80" alt="École" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer avec liens officiels et logos -->
+    <footer class="bg-chenier-750 text-white pt-16 pb-12 border-t border-white/10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl gold-gradient flex items-center justify-center text-white font-black text-xl">
+                            AC
+                        </div>
+                        <span class="text-lg font-bold tracking-tight">Blog - École André Chénier</span>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed max-w-md mb-6">
+                        Établissement scolaire d'excellence situé au cœur du quartier Hassan à Rabat (10000), Maroc. Plus d'un siècle d'histoire et de passion éducative.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://ecole-chenier.ac.ma/" target="_blank" rel="noopener noreferrer" title="Site Web Officiel" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-chenier-gold flex items-center justify-center text-white transition"><i class="fas fa-globe"></i></a>
+                        <a href="https://www.instagram.com/ecolechenier/" target="_blank" rel="noopener noreferrer" title="Instagram Officiel" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-chenier-gold flex items-center justify-center text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="https://web.facebook.com/p/Ecole-Andr%C3%A9-Ch%C3%A9nier-Rabat-100057398081338/?locale=fr_FR" target="_blank" rel="noopener noreferrer" title="Page Facebook Officielle" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-chenier-gold flex items-center justify-center text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://aefe.gouv.fr/fr/etablissements/ecole-andre-chenier" target="_blank" rel="noopener noreferrer" title="Fiche AEFE" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-chenier-gold flex items-center justify-center text-white transition"><i class="fas fa-graduation-cap"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-chenier-gold mb-4">Navigation rapide</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><button onclick="switchTab('accueil')" class="hover:text-chenier-gold transition">Accueil</button></li>
+                        <li><button onclick="switchTab('actualites')" class="hover:text-chenier-gold transition">Actualités</button></li>
+                        <li><button onclick="switchTab('viescolaire')" class="hover:text-chenier-gold transition">Vie Scolaire</button></li>
+                        <li><button onclick="switchTab('galerie')" class="hover:text-chenier-gold transition">Galerie Photos</button></li>
+                        <li><button onclick="switchTab('articles')" class="hover:text-chenier-gold transition">Articles</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-chenier-gold mb-4">Informations</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><button onclick="switchTab('apropos')" class="hover:text-chenier-gold transition">À propos</button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-4">
+                <p>Créé par Mazen Ezzat</p>
+                <p>Développé pour l'excellence éducative.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        const defaultArticles = [
+            {
+                id: 1,
+                title: "École André Chénier : Un siècle d'histoire et de modernité au cœur de Rabat",
+                category: "Histoire et Patrimoine",
+                date: "27 octobre 2026",
+                image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80",
+                summary: "Imaginez un lieu chargé d'histoire, niché en plein cœur du quartier Hassan à Rabat, juste à côté du Bouregreg et de la célèbre tour Hassan...",
+                content: "Imaginez un lieu chargé d'histoire, niché en plein cœur du quartier Hassan à Rabat, juste à côté du Bouregreg et de la célèbre tour Hassan. C'est là que bat le cœur de l'École André Chénier, une institution qui traverse les générations depuis plus d'un siècle. Pour comprendre son âme, il faut remonter le temps jusqu'en 1923 : à l'époque, elle s'appelait l'école Charles de Foucauld et sa construction avait reçu le soutien du maréchal Lyautey. Rebaptisée plus tard en hommage au célèbre poète français André Chénier, l'école est devenue au fil des décennies un repère incontournable à Rabat.\n\nAujourd'hui intégrée au réseau d'excellence de l'AEFE, l'école accueille environ 700 élèves de la petite section au CM2. C'est une véritable ruche multiculturelle et connectée où l'on apprend le français, l'arabe et l'anglais dès le plus jeune âge, mais où l'on s'épanouit aussi à travers une foule de projets hyper dynamiques. Sur leur page officielle, on peut suivre leur quotidien trépidant : les enfants y animent leur propre webradio, préparent des spectacles, participent à des flashmobs mémorables, fêtent le carnaval ou s'affrontent lors de défis sportifs et culturels. C'est cette alliance parfaite entre un patrimoine historique unique et une pédagogie moderne et ouverte sur le monde qui fait de Chénier bien plus qu'une simple école, mais un véritable lieu de vie ancré dans l'histoire de Rabat.",
+                status: "Publié"
+            },
+            {
+                id: 2,
+                title: "Rentrée Scolaire : C'est reparti avec enthousiasme !",
+                category: "Actualités",
+                date: "04 Septembre 2026",
+                image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
+                summary: "Les élèves de l'École André Chénier ont fait leur rentrée ce lundi dans une ambiance chaleureuse et studieuse.",
+                content: "Ce lundi, l'École André Chénier à Rabat a ouvert ses portes pour accueillir ses élèves. Revêtus de leurs plus beaux sourires, anciens et nouveaux élèves ont découvert leurs nouvelles classes et fait la connaissance de leurs enseignants. Une belle année pleine de projets et d'apprentissages s'annonce pour l'ensemble de notre communauté éducative.",
+                status: "Publié"
+            },
+            {
+                id: 3,
+                title: "Tournoi Inter-Classes et Esprit d'Équipe",
+                category: "Événements",
+                date: "05 Décembre 2026",
+                image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80",
+                summary: "Esprit d'équipe, fair-play et dépassement de soi ont rythmé cette grande journée sportive.",
+                content: "Le sport rassemble et dynamise ! Notre tournoi annuel inter-classes s'est déroulé sous un magnifique soleil hivernal à Rabat. Les élèves ont brillamment illustré les valeurs du fair-play, du soutien mutuel et de l'effort collectif.",
+                status: "Publié"
+            }
+        ];
+
+        // Gallery Data
+        const galleryItems = [
+            { id: 1, title: "Vue historique du Quartier Hassan", category: "patrimoine", image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80" },
+            { id: 2, title: "Activité en classe de langues", category: "classes", image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" },
+            { id: 3, title: "Spectacle et chorale des élèves", category: "evenements", image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" },
+            { id: 4, title: "Rénovation architecturale", category: "patrimoine", image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80" },
+            { id: 5, title: "Atelier Webradio et multimédia", category: "classes", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" },
+            { id: 6, title: "Fête et carnaval de l'école", category: "evenements", image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80" }
+        ];
+
+        function getArticles() {
+            localStorage.setItem('chenier_articles', JSON.stringify(defaultArticles));
+            return defaultArticles;
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`section-${tabId}`).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition";
+            });
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            if (activeBtn) {
+                activeBtn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold text-chenier-600 bg-chenier-50 transition";
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (tabId === 'accueil') renderHomeArticles();
+            if (tabId === 'actualites') renderActualitesList();
+            if (tabId === 'articles') renderAllArticles();
+            if (tabId === 'galerie') renderGallery('all');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.className = "fas fa-bars text-xl";
+            } else {
+                icon.className = "fas fa-times text-xl";
+            }
+        }
+
+        function renderHomeArticles() {
+            const articles = getArticles().filter(a => a.status === 'Publié').slice(0, 3);
+            const grid = document.getElementById('home-articles-grid');
+            grid.innerHTML = articles.map(art => `
+                <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 flex flex-col justify-between group hover:shadow-2xl transition">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-slate-100">
+                            <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80'">
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-white/90 backdrop-blur-md text-chenier-600 shadow-md">
+                                ${art.category}
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-xs text-slate-400 mb-2 flex items-center gap-1.5">
+                                <i class="far fa-calendar-alt"></i> ${art.date}
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-chenier-600 transition line-clamp-2">${art.title}</h3>
+                            <p class="text-slate-600 text-sm line-clamp-3 mb-6">${art.summary}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="openArticleDetail(${art.id})" class="inline-flex items-center gap-2 text-chenier-600 font-bold text-sm hover:text-chenier-700 transition">
+                            Lire l'article <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderActualitesList() {
+            const articles = getArticles().filter(a => a.status === 'Publié');
+            const container = document.getElementById('actualites-list');
+            container.innerHTML = articles.map(art => `
+                <div class="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden flex flex-col md:flex-row gap-6 p-6 sm:p-8 items-center">
+                    <div class="w-full md:w-1/3 h-56 rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0">
+                        <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80'">
+                    </div>
+                    <div class="w-full md:w-2/3 space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-chenier-50 text-chenier-600">${art.category}</span>
+                            <span class="text-xs text-slate-400"><i class="far fa-calendar-alt mr-1"></i> ${art.date}</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">${art.title}</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">${art.summary}</p>
+                        <button onclick="openArticleDetail(${art.id})" class="inline-flex items-center gap-2 text-chenier-600 font-bold text-sm hover:text-chenier-700 pt-2 transition">
+                            Lire la suite <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        let currentFilterCategory = 'all';
+        let currentSearchQuery = '';
+
+        function renderAllArticles() {
+            const articles = getArticles().filter(a => a.status === 'Publié');
+            
+            const categories = ['all', ...new Set(articles.map(a => a.category))];
+            const filterContainer = document.getElementById('article-categories-filter');
+            filterContainer.innerHTML = categories.map(cat => `
+                <button onclick="filterArticleCategory('${cat}')" class="art-cat-btn px-4 py-2 rounded-xl text-xs font-semibold transition ${currentFilterCategory === cat ? 'bg-chenier-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                    ${cat === 'all' ? 'Toutes' : cat}
+                </button>
+            `).join('');
+
+            let filtered = articles.filter(art => {
+                const matchesCat = currentFilterCategory === 'all' || art.category === currentFilterCategory;
+                const matchesSearch = art.title.toLowerCase().includes(currentSearchQuery.toLowerCase()) || art.content.toLowerCase().includes(currentSearchQuery.toLowerCase());
+                return matchesCat && matchesSearch;
+            });
+
+            const grid = document.getElementById('all-articles-grid');
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-3 text-center py-16 text-slate-400">Aucun article ne correspond à votre recherche.</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(art => `
+                <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 flex flex-col justify-between group hover:shadow-2xl transition">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-slate-100">
+                            <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80'">
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-white/90 backdrop-blur-md text-chenier-600 shadow-md">
+                                ${art.category}
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-xs text-slate-400 mb-2 flex items-center gap-1.5">
+                                <i class="far fa-calendar-alt"></i> ${art.date}
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-chenier-600 transition line-clamp-2">${art.title}</h3>
+                            <p class="text-slate-600 text-sm line-clamp-3 mb-6">${art.summary}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="openArticleDetail(${art.id})" class="inline-flex items-center gap-2 text-chenier-600 font-bold text-sm hover:text-chenier-700 transition">
+                            Lire l'article <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterArticleCategory(cat) {
+            currentFilterCategory = cat;
+            renderAllArticles();
+        }
+
+        function handleArticleSearch() {
+            currentSearchQuery = document.getElementById('article-search-input').value;
+            renderAllArticles();
+        }
+
+        function openArticleDetail(id) {
+            const articles = getArticles();
+            const art = articles.find(a => a.id === id);
+            if (!art) return;
+
+            const container = document.getElementById('article-detail-content');
+            container.innerHTML = `
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-chenier-50 text-chenier-600">${art.category}</span>
+                    <span class="text-xs text-slate-400 flex items-center gap-1.5"><i class="far fa-calendar-alt"></i> ${art.date}</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 leading-tight">${art.title}</h1>
+                <div class="rounded-2xl overflow-hidden mb-8 h-80 sm:h-96 bg-slate-100 shadow-lg">
+                    <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80'">
+                </div>
+                <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4 text-base sm:text-lg">
+                    <p class="font-medium text-slate-900 text-lg mb-4">${art.summary}</p>
+                    <p>${art.content.replace(/\n/g, '<br>')}</p>
+                </div>
+            `;
+            switchTab('article-detail');
+        }
+
+        function renderGallery(category) {
+            const grid = document.getElementById('gallery-grid');
+            const filtered = category === 'all' ? galleryItems : galleryItems.filter(item => item.category === category);
+            
+            grid.innerHTML = filtered.map(item => `
+                <div onclick="openLightbox('${item.image}', '${item.title}')" class="group relative rounded-2xl overflow-hidden shadow-md bg-slate-100 h-64 cursor-pointer">
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                        <span class="text-white font-semibold text-sm">${item.title}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+                btn.className = "gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-medium bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition";
+            });
+            event && event.target && (event.target.className = "gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-chenier-600 text-white shadow-md shadow-chenier-600/20 transition");
+        }
+
+        function filterGallery(cat) {
+            renderGallery(cat);
+        }
+
+        function openLightbox(imgSrc, caption) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+            img.src = imgSrc;
+            cap.textContent = caption;
+            modal.classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').
