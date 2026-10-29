@@ -18,8 +18,7 @@
                             500: '#1d4ed8',
                             600: '#1e40af',
                             750: '#172554',
-                            gold: '#d97706',
-                            goldLight: '#f59e0b',
+                            gold: '#f59e0b',
                             goldDark: '#b45309'
                         }
                     },
@@ -35,16 +34,88 @@
     <!-- Google Fonts Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        .gold-gradient {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+        /* Style Liquid Glass Total & Unifié */
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.08);
+            border-radius: 2rem;
         }
-        .blue-gradient {
-            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+        .liquid-glass-intense {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 15px 45px 0 rgba(31, 38, 135, 0.12);
+            border-radius: 2.5rem;
         }
-        .hero-pattern {
-            background-color: #1e40af;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 24px 24px;
+        .liquid-glass-nav {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px 0 rgba(31, 38, 135, 0.1);
+            border-radius: 9999px;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .glass-dark {
+            background: rgba(23, 37, 84, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Dégradé style Instagram pour l'icône active */
+        .instagram-bg-gradient {
+            background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+            box-shadow: 0 8px 25px rgba(225, 48, 108, 0.35);
+        }
+        .gold-liquid-gradient {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.95) 0%, rgba(217, 119, 6, 0.95) 100%);
+            box-shadow: 0 8px 25px rgba(217, 119, 6, 0.35);
+            border-radius: 9999px;
+        }
+        .blue-liquid-gradient {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.95) 0%, rgba(29, 78, 216, 0.95) 100%);
+            box-shadow: 0 8px 25px rgba(29, 78, 216, 0.35);
+            border-radius: 9999px;
+        }
+        
+        .hero-liquid-bg {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.85) 0%, rgba(23, 37, 84, 0.9) 50%, rgba(29, 78, 216, 0.85) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-liquid-bg::before {
+            content: '';
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: rgba(245, 158, 11, 0.25);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            filter: blur(60px);
+            z-index: 0;
+        }
+        .hero-liquid-bg::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: rgba(29, 78, 216, 0.4);
+            border-radius: 50%;
+            bottom: -80px;
+            left: -80px;
+            filter: blur(60px);
+            z-index: 0;
         }
         ::-webkit-scrollbar {
             width: 8px;
@@ -56,34 +127,31 @@
             background: #cbd5e1;
             border-radius: 4px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen selection:bg-chenier-gold selection:text-white">
+<body class="bg-gradient-to-br from-slate-50 via-blue-50/30 to-amber-50/20 text-slate-800 font-sans antialiased flex flex-col min-h-screen selection:bg-chenier-gold selection:text-white">
 
-    <!-- Top Bar avec Localisation -->
-    <div class="bg-chenier-750 text-slate-300 text-xs py-2 px-4 border-b border-white/10">
+    <!-- Top Bar Liquid -->
+    <div class="glass-dark text-slate-200 text-xs py-2.5 px-4 z-50">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
             <div class="flex items-center gap-4 flex-wrap">
                 <span><i class="fas fa-map-marker-alt text-chenier-gold mr-1.5"></i> Quartier Hassan, Rabat 10000, Maroc</span>
             </div>
             <div class="flex items-center gap-3">
-                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-white/10 text-white">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 text-white border border-white/15 shadow-sm">
                     <i class="fas fa-graduation-cap mr-1"></i> AEFE & Patrimoine
                 </span>
             </div>
         </div>
     </div>
 
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 transition-all">
+    <!-- Navigation Bar Liquid Glass -->
+    <header class="sticky top-0 z-40 glass-header shadow-sm transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <!-- Logo & Nom : Blog -->
-                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('accueil')">
-                    <div class="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center shadow-lg shadow-amber-500/20 text-white font-black text-2xl tracking-tighter">
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="switchTab('accueil')">
+                    <div class="w-12 h-12 rounded-2xl gold-liquid-gradient flex items-center justify-center text-white font-black text-2xl tracking-tighter shadow-lg transform group-hover:scale-105 transition">
                         AC
                     </div>
                     <div>
@@ -92,33 +160,51 @@
                     </div>
                 </div>
 
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex items-center gap-1">
-                    <button onclick="switchTab('accueil')" id="nav-accueil" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold text-chenier-600 bg-chenier-50 transition">Accueil</button>
-                    <button onclick="switchTab('actualites')" id="nav-actualites" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition">Actualités</button>
-                    <button onclick="switchTab('viescolaire')" id="nav-viescolaire" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition">Vie Scolaire</button>
-                    <button onclick="switchTab('galerie')" id="nav-galerie" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition">Galerie</button>
-                    <button onclick="switchTab('articles')" id="nav-articles" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition">Articles</button>
-                    <button onclick="switchTab('apropos')" id="nav-apropos" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition">À propos</button>
+                <!-- Desktop Menu : Icônes style Liquid Glass & Instagram Gradient -->
+                <nav class="hidden md:flex items-center gap-3 liquid-glass-nav p-2">
+                    <!-- Accueil -->
+                    <button onclick="switchTab('accueil')" id="nav-accueil" class="nav-btn w-12 h-12 rounded-full text-lg instagram-bg-gradient text-white shadow-md transition flex items-center justify-center transform hover:scale-110" title="Accueil">
+                        <i class="fas fa-home"></i>
+                    </button>
+                    <!-- Actualités -->
+                    <button onclick="switchTab('actualites')" id="nav-actualites" class="nav-btn w-12 h-12 rounded-full text-lg text-slate-600 hover:text-white hover:bg-white/40 transition flex items-center justify-center transform hover:scale-110" title="Actualités">
+                        <i class="fas fa-bullhorn"></i>
+                    </button>
+                    <!-- Vie Scolaire -->
+                    <button onclick="switchTab('viescolaire')" id="nav-viescolaire" class="nav-btn w-12 h-12 rounded-full text-lg text-slate-600 hover:text-white hover:bg-white/40 transition flex items-center justify-center transform hover:scale-110" title="Vie Scolaire">
+                        <i class="fas fa-graduation-cap"></i>
+                    </button>
+                    <!-- Galerie -->
+                    <button onclick="switchTab('galerie')" id="nav-galerie" class="nav-btn w-12 h-12 rounded-full text-lg text-slate-600 hover:text-white hover:bg-white/40 transition flex items-center justify-center transform hover:scale-110" title="Galerie">
+                        <i class="fas fa-images"></i>
+                    </button>
+                    <!-- Articles -->
+                    <button onclick="switchTab('articles')" id="nav-articles" class="nav-btn w-12 h-12 rounded-full text-lg text-slate-600 hover:text-white hover:bg-white/40 transition flex items-center justify-center transform hover:scale-110" title="Articles">
+                        <i class="fas fa-newspaper"></i>
+                    </button>
+                    <!-- À propos -->
+                    <button onclick="switchTab('apropos')" id="nav-apropos" class="nav-btn w-12 h-12 rounded-full text-lg text-slate-600 hover:text-white hover:bg-white/40 transition flex items-center justify-center transform hover:scale-110" title="À propos">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
                 </nav>
 
                 <!-- Actions Mobile Menu Button -->
                 <div class="flex items-center md:hidden">
-                    <button onclick="toggleMobileMenu()" class="p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition focus:outline-none">
+                    <button onclick="toggleMobileMenu()" class="p-3 rounded-full liquid-glass text-slate-700 hover:text-slate-900 transition focus:outline-none shadow-sm">
                         <i id="mobile-menu-icon" class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-lg">
-            <button onclick="switchTab('accueil'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-chenier-600 bg-chenier-50">Accueil</button>
-            <button onclick="switchTab('actualites'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Actualités</button>
-            <button onclick="switchTab('viescolaire'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Vie Scolaire</button>
-            <button onclick="switchTab('galerie'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Galerie</button>
-            <button onclick="switchTab('articles'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">Articles</button>
-            <button onclick="switchTab('apropos'); toggleMobileMenu();" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">À propos</button>
+        <!-- Mobile Menu Dropdown Liquid -->
+        <div id="mobile-menu" class="hidden md:hidden glass-header border-b border-white/40 px-4 pt-3 pb-5 space-y-2 shadow-xl">
+            <button onclick="switchTab('accueil'); toggleMobileMenu();" class="w-full text-left px-5 py-3 rounded-2xl text-sm font-semibold text-chenier-600 bg-white/90 shadow-sm flex items-center gap-3"><i class="fas fa-home w-5 text-center"></i> Accueil</button>
+            <button onclick="switchTab('actualites'); toggleMobileMenu();" class="w-full text-left px-5 py-3 rounded-2xl text-sm font-medium text-slate-700 hover:bg-white/50 flex items-center gap-3"><i class="fas fa-bullhorn w-5 text-center"></i> Actualités</button>
+            <button onclick="switchTab('viescolaire'); toggleMobileMenu();" class="w-full text-left px-5 py-3 rounded-2xl text-sm font-medium text-slate-700 hover:bg-white/50 flex items-center gap-3"><i class="fas fa-graduation-cap w-5 text-center"></i> Vie Scolaire</button>
+            <button onclick="switchTab('galerie'); toggleMobileMenu();" class="w-full text-left px-5 py-3 rounded-2xl text-sm font-medium text-slate-700 hover:bg-white/50 flex items-center gap-3"><i class="fas fa-images w-5 text-center"></i> Galerie</button>
+            <button onclick="switchTab('articles'); toggleMobileMenu();" class="w-full text-left px-5 py-3 rounded-2xl text-sm font-medium text-slate-700 hover:bg-white/50 flex items-center gap-3"><i class="fas fa-newspaper w-5 text-center"></i> Articles</button>
+            <button onclick="switchTab('apropos'); toggleMobileMenu();" class="w-full text-left px-5 py-3 rounded-2xl text-sm font-medium text-slate-700 hover:bg-white/50 flex items-center gap-3"><i class="fas fa-info-circle w-5 text-center"></i> À propos</button>
         </div>
     </header>
 
@@ -127,61 +213,60 @@
 
         <!-- ================= SECTION ACCUEIL ================= -->
         <section id="section-accueil" class="tab-section">
-            <!-- Hero Banner -->
-            <div class="hero-pattern relative text-white py-24 lg:py-32 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-r from-chenier-750/90 to-chenier-600/70 z-0"></div>
+            <!-- Hero Banner Liquid Glass -->
+            <div class="hero-liquid-bg text-white py-24 lg:py-32 relative">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-12">
-                    <div class="max-w-2xl">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-chenier-gold font-semibold text-xs mb-6">
+                    <div class="max-w-2xl liquid-glass p-8 lg:p-10 border border-white/20">
+                        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full liquid-glass text-chenier-gold font-semibold text-xs mb-6 shadow-lg">
                             <i class="fas fa-landmark"></i> Plus d'un siècle d'histoire à Rabat
                         </div>
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6 text-slate-900 drop-shadow-sm">
                             Bienvenue sur le <span class="text-chenier-gold">Blog</span> de l'École André Chénier
                         </h1>
-                        <p class="text-lg sm:text-xl text-slate-200 mb-8 font-light leading-relaxed">
+                        <p class="text-lg sm:text-xl text-slate-700 mb-8 font-light leading-relaxed">
                             Nichée au cœur du quartier Hassan à deux pas du Bouregreg, notre école allie un patrimoine historique exceptionnel (fondée en 1923) à une pédagogie moderne et innovante.
                         </p>
                         <div class="flex flex-wrap justify-center lg:justify-start gap-4">
-                            <button onclick="switchTab('articles')" class="px-8 py-4 gold-gradient hover:opacity-95 text-white font-bold rounded-2xl shadow-xl shadow-amber-600/30 transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                            <button onclick="switchTab('articles')" class="px-8 py-4 gold-liquid-gradient hover:opacity-95 text-white font-bold rounded-full shadow-xl transition transform hover:-translate-y-0.5 flex items-center gap-2 border border-amber-400/30">
                                 <i class="fas fa-book-open"></i> Lire l'article phare
                             </button>
                         </div>
                     </div>
                     <div class="w-full max-w-md lg:max-w-lg">
-                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 bg-white/5 backdrop-blur-sm group">
-                            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80" alt="École André Chénier" class="w-full h-auto object-cover transform group-hover:scale-105 transition duration-500">
-                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 text-left">
-                                <span class="text-xs font-bold text-chenier-gold uppercase tracking-wider">Institution Historique</span>
-                                <h3 class="text-lg font-bold text-white mt-1">Quartier Hassan, Rabat (10000)</h3>
+                        <div class="relative rounded-3xl overflow-hidden liquid-glass-intense p-3 shadow-2xl border border-white/40 group">
+                            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80" alt="École André Chénier" class="w-full h-auto rounded-2xl object-cover transform group-hover:scale-105 transition duration-500">
+                            <div class="absolute bottom-6 left-6 right-6 liquid-glass p-4 rounded-2xl text-left border border-white/60 backdrop-blur-md">
+                                <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Institution Historique</span>
+                                <h3 class="text-base font-bold text-slate-900 mt-0.5">Quartier Hassan, Rabat (10000)</h3>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Quick Highlights / Features -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20 mb-16">
+            <!-- Quick Highlights / Features Liquid Glass -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20 mb-16">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition group">
-                        <div class="w-14 h-14 rounded-2xl bg-chenier-50 text-chenier-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-chenier-600 group-hover:text-white transition">
+                    <div class="liquid-glass p-8 shadow-xl hover:shadow-2xl transition group hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-100/80 text-chenier-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-chenier-600 group-hover:text-white transition shadow-sm">
                             <i class="fas fa-history"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-2">Héritage & Mémoire</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Depuis 1923, un repère générationnel incontournable, ancré dans le patrimoine de la ville.</p>
+                        <p class="text-slate-700 text-sm leading-relaxed">Depuis 1923, un repère générationnel incontournable, ancré dans le patrimoine de la ville.</p>
                     </div>
-                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition group">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-50 text-chenier-gold flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition">
+                    <div class="liquid-glass p-8 shadow-xl hover:shadow-2xl transition group hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100/80 text-chenier-gold flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition shadow-sm">
                             <i class="fas fa-globe-europe"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-2">Réseau AEFE & Langues</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Environ 700 élèves de la petite section au CM2 apprenant le français, l'arabe et l'anglais dans un cadre multiculturel.</p>
+                        <p class="text-slate-700 text-sm leading-relaxed">Environ 700 élèves de la petite section au CM2 apprenant le français, l'arabe et l'anglais dans un cadre multiculturel.</p>
                     </div>
-                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition group">
-                        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition">
+                    <div class="liquid-glass p-8 shadow-xl hover:shadow-2xl transition group hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-100/80 text-emerald-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition shadow-sm">
                             <i class="fas fa-broadcast-tower"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-2">Projets Dynamiques</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Webradio animée par les enfants, spectacles, carnavals, flashmobs et défis sportifs et culturels au quotidien.</p>
+                        <p class="text-slate-700 text-sm leading-relaxed">Webradio animée par les enfants, spectacles, carnavals, flashmobs et défis sportifs et culturels au quotidien.</p>
                     </div>
                 </div>
             </div>
@@ -193,7 +278,7 @@
                         <span class="text-chenier-gold font-bold text-xs uppercase tracking-widest block mb-2">Actualités & Histoire</span>
                         <h2 class="text-3xl font-extrabold text-slate-900">À la une</h2>
                     </div>
-                    <button onclick="switchTab('articles')" class="inline-flex items-center gap-2 text-chenier-600 hover:text-chenier-700 font-bold text-sm bg-chenier-50 hover:bg-chenier-100 px-5 py-2.5 rounded-xl transition">
+                    <button onclick="switchTab('articles')" class="inline-flex items-center gap-2 text-chenier-600 font-bold text-sm liquid-glass px-6 py-3 transition shadow-sm hover:bg-white/80 rounded-full">
                         Voir tous les articles <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
@@ -206,10 +291,10 @@
         <!-- ================= SECTION ACTUALITÉS ================= -->
         <section id="section-actualites" class="tab-section hidden py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="liquid-glass p-8 sm:p-12 text-center max-w-4xl mx-auto mb-16 shadow-xl">
                     <span class="text-chenier-gold font-bold text-xs uppercase tracking-widest block mb-2">Annonces & Événements</span>
                     <h1 class="text-4xl font-extrabold text-slate-900 mb-4">Actualités de l'École</h1>
-                    <p class="text-slate-600 text-lg">Suivez la vie trépidante de notre établissement, des projets innovants aux fêtes scolaires.</p>
+                    <p class="text-slate-700 text-lg">Suivez la vie trépidante de notre établissement, des projets innovants aux fêtes scolaires.</p>
                 </div>
                 <div id="actualites-list" class="space-y-8 max-w-4xl mx-auto">
                     <!-- Dynamically populated -->
@@ -220,33 +305,33 @@
         <!-- ================= SECTION VIE SCOLAIRE ================= -->
         <section id="section-viescolaire" class="tab-section hidden py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="liquid-glass p-8 sm:p-12 text-center max-w-4xl mx-auto mb-16 shadow-xl">
                     <span class="text-chenier-gold font-bold text-xs uppercase tracking-widest block mb-2">Au cœur des classes</span>
                     <h1 class="text-4xl font-extrabold text-slate-900 mb-4">La Vie Scolaire</h1>
-                    <p class="text-slate-600 text-lg">Webradio, ateliers artistiques, spectacles, sport et notre grand entretien publié chaque samedi !</p>
+                    <p class="text-slate-700 text-lg">Webradio, ateliers artistiques, spectacles, sport et notre grand entretien publié chaque samedi !</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                    <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col justify-between">
+                    <div class="liquid-glass-intense p-8 shadow-xl flex flex-col justify-between">
                         <div>
-                            <div class="inline-block p-3 rounded-2xl bg-chenier-50 text-chenier-600 text-xl mb-6">
+                            <div class="inline-block p-4 rounded-2xl bg-blue-100/80 text-chenier-600 text-xl mb-6 shadow-sm">
                                 <i class="fas fa-microphone-alt"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-slate-900 mb-4">Webradio & Interview Hebdomadaire</h3>
-                            <p class="text-slate-600 leading-relaxed mb-6">Les enfants animent leur propre webradio et s'exercent à la prise de parole. Retrouvez <strong>chaque samedi un nouvel interview exclusif</strong> mené avec les élèves, enseignants et intervenants de l'école.</p>
+                            <p class="text-slate-700 leading-relaxed mb-6">Les enfants animent leur propre webradio et s'exercent à la prise de parole. Retrouvez <strong>chaque samedi un nouvel interview exclusif</strong> mené avec les élèves, enseignants et intervenants de l'école.</p>
                         </div>
-                        <div class="rounded-2xl overflow-hidden h-48 bg-slate-100">
+                        <div class="rounded-2xl overflow-hidden h-48 bg-slate-100 border border-white/50">
                             <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" alt="Webradio" class="w-full h-full object-cover">
                         </div>
                     </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col justify-between">
+                    <div class="liquid-glass-intense p-8 shadow-xl flex flex-col justify-between">
                         <div>
-                            <div class="inline-block p-3 rounded-2xl bg-amber-50 text-chenier-gold text-xl mb-6">
+                            <div class="inline-block p-4 rounded-2xl bg-amber-100/80 text-chenier-gold text-xl mb-6 shadow-sm">
                                 <i class="fas fa-theater-masks"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-slate-900 mb-4">Spectacles, Carnivals & Flashmobs</h3>
-                            <p class="text-slate-600 leading-relaxed mb-6">Entre carnavals hauts en couleur, flashmobs mémorables et représentations théâtrales, l'expression artistique rythme joyeusement l'année scolaire.</p>
+                            <p class="text-slate-700 leading-relaxed mb-6">Entre carnavals hauts en couleur, flashmobs mémorables et représentations théâtrales, l'expression artistique rythme joyeusement l'année scolaire.</p>
                         </div>
-                        <div class="rounded-2xl overflow-hidden h-48 bg-slate-100">
+                        <div class="rounded-2xl overflow-hidden h-48 bg-slate-100 border border-white/50">
                             <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="Spectacles" class="w-full h-full object-cover">
                         </div>
                     </div>
@@ -257,17 +342,17 @@
         <!-- ================= SECTION GALERIE ================= -->
         <section id="section-galerie" class="tab-section hidden py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-12">
+                <div class="liquid-glass p-8 sm:p-12 text-center max-w-4xl mx-auto mb-12 shadow-xl">
                     <span class="text-chenier-gold font-bold text-xs uppercase tracking-widest block mb-2">Moments forts</span>
                     <h1 class="text-4xl font-extrabold text-slate-900 mb-4">Galerie Photos</h1>
-                    <p class="text-slate-600 text-lg">Explorez les souvenirs en images de notre école à Rabat.</p>
+                    <p class="text-slate-700 text-lg">Explorez les souvenirs en images de notre école à Rabat.</p>
                 </div>
                 <!-- Gallery Filters -->
                 <div class="flex flex-wrap justify-center gap-3 mb-12">
-                    <button onclick="filterGallery('all')" class="gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-chenier-600 text-white shadow-md shadow-chenier-600/20 transition">Tous</button>
-                    <button onclick="filterGallery('classes')" class="gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-medium bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Classes</button>
-                    <button onclick="filterGallery('evenements')" class="gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-medium bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Événements</button>
-                    <button onclick="filterGallery('patrimoine')" class="gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-medium bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Patrimoine</button>
+                    <button onclick="filterGallery('all')" class="gallery-filter-btn px-6 py-3 rounded-full text-sm font-semibold blue-liquid-gradient text-white shadow-lg transition">Tous</button>
+                    <button onclick="filterGallery('classes')" class="gallery-filter-btn px-6 py-3 rounded-full text-sm font-medium liquid-glass text-slate-700 transition">Classes</button>
+                    <button onclick="filterGallery('evenements')" class="gallery-filter-btn px-6 py-3 rounded-full text-sm font-medium liquid-glass text-slate-700 transition">Événements</button>
+                    <button onclick="filterGallery('patrimoine')" class="gallery-filter-btn px-6 py-3 rounded-full text-sm font-medium liquid-glass text-slate-700 transition">Patrimoine</button>
                 </div>
                 <!-- Gallery Grid -->
                 <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -277,12 +362,12 @@
         </section>
 
         <!-- Lightbox Modal for Gallery -->
-        <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 hidden">
-            <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-chenier-gold transition focus:outline-none">
+        <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+            <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-chenier-gold transition focus:outline-none liquid-glass w-12 h-12 flex items-center justify-center rounded-full">
                 <i class="fas fa-times"></i>
             </button>
             <div class="max-w-4xl w-full text-center">
-                <img id="lightbox-img" src="" alt="" class="max-h-[80vh] mx-auto rounded-xl shadow-2xl object-contain mb-4">
+                <img id="lightbox-img" src="" alt="" class="max-h-[80vh] mx-auto rounded-3xl shadow-2xl object-contain mb-4 border border-white/20">
                 <p id="lightbox-caption" class="text-white text-lg font-medium"></p>
             </div>
         </div>
@@ -290,19 +375,19 @@
         <!-- ================= SECTION ARTICLES ================= -->
         <section id="section-articles" class="tab-section hidden py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-12">
+                <div class="liquid-glass p-8 sm:p-12 text-center max-w-4xl mx-auto mb-12 shadow-xl">
                     <span class="text-chenier-gold font-bold text-xs uppercase tracking-widest block mb-2">Publications complètes</span>
                     <h1 class="text-4xl font-extrabold text-slate-900 mb-4">Tous les Articles</h1>
-                    <p class="text-slate-600 text-lg">Recherchez et filtrez l'ensemble des articles publiés par l'équipe de l'école.</p>
+                    <p class="text-slate-700 text-lg">Recherchez et filtrez l'ensemble des articles publiés par l'équipe de l'école.</p>
                 </div>
                 <!-- Search and Categories Filter Bar -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div class="liquid-glass-intense p-6 shadow-xl mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
                     <div class="relative w-full md:w-96">
                         <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="text" id="article-search-input" oninput="handleArticleSearch()" placeholder="Rechercher un article..." class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-chenier-600 text-sm">
+                        <input type="text" id="article-search-input" oninput="handleArticleSearch()" placeholder="Rechercher un article..." class="w-full pl-11 pr-4 py-3.5 rounded-full bg-white/70 border border-white/80 focus:outline-none focus:border-chenier-600 text-sm shadow-inner">
                     </div>
                     <div id="article-categories-filter" class="flex flex-wrap gap-2 w-full md:w-auto">
-                        <button onclick="filterArticleCategory('all')" class="art-cat-btn px-4 py-2 rounded-xl text-xs font-semibold bg-chenier-600 text-white transition">Toutes les catégories</button>
+                        <button onclick="filterArticleCategory('all')" class="art-cat-btn px-5 py-2.5 rounded-full text-xs font-semibold blue-liquid-gradient text-white transition">Toutes les catégories</button>
                     </div>
                 </div>
                 <!-- Articles Grid -->
@@ -315,10 +400,10 @@
         <!-- ================= SECTION ARTICLE DÉTAIL (SINGLE) ================= -->
         <section id="section-article-detail" class="tab-section hidden py-16">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <button onclick="switchTab('articles')" class="inline-flex items-center gap-2 text-chenier-600 hover:text-chenier-700 font-semibold text-sm mb-8 bg-chenier-50 px-4 py-2 rounded-xl transition">
+                <button onclick="switchTab('articles')" class="inline-flex items-center gap-2 text-chenier-600 font-semibold text-sm mb-8 liquid-glass px-6 py-3 transition shadow-sm rounded-full">
                     <i class="fas fa-arrow-left"></i> Retour aux articles
                 </button>
-                <div id="article-detail-content" class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden p-8 sm:p-12">
+                <div id="article-detail-content" class="liquid-glass-intense shadow-2xl overflow-hidden p-8 sm:p-12">
                     <!-- Injected by JS -->
                 </div>
             </div>
@@ -327,33 +412,33 @@
         <!-- ================= SECTION À PROPOS ================= -->
         <section id="section-apropos" class="tab-section hidden py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="liquid-glass p-8 sm:p-12 text-center max-w-4xl mx-auto mb-16 shadow-xl">
                     <span class="text-chenier-gold font-bold text-xs uppercase tracking-widest block mb-2">Notre Établissement</span>
                     <h1 class="text-4xl font-extrabold text-slate-900 mb-4">À propos de l'École André Chénier</h1>
-                    <p class="text-slate-600 text-lg">Implantée au cœur du quartier Hassan à Rabat, entre le Bouregreg et la tour Hassan.</p>
+                    <p class="text-slate-700 text-lg">Implantée au cœur du quartier Hassan à Rabat, entre le Bouregreg et la tour Hassan.</p>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-                    <div class="space-y-6">
+                    <div class="space-y-6 liquid-glass p-8 sm:p-10 shadow-xl">
                         <h2 class="text-2xl font-bold text-slate-900">Un patrimoine historique et pédagogique</h2>
-                        <p class="text-slate-600 leading-relaxed">
+                        <p class="text-slate-700 leading-relaxed">
                             Fondée en 1923 sous le nom d'école Charles de Foucauld avec le soutien du maréchal Lyautey, l'école est devenue au fil des décennies un repère incontournable à Rabat.
                         </p>
-                        <p class="text-slate-600 leading-relaxed">
+                        <p class="text-slate-700 leading-relaxed">
                             Aujourd'hui membre du réseau d'excellence de l'AEFE, elle accueille environ 700 élèves de la petite section au CM2 dans un cadre multilingue et stimulant (français, arabe, anglais).
                         </p>
                         <div class="grid grid-cols-2 gap-4 pt-4">
-                            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+                            <div class="liquid-glass p-5 shadow-sm">
                                 <span class="text-3xl font-extrabold text-chenier-600 block mb-1">Depuis 1923</span>
-                                <span class="text-xs font-semibold text-slate-500 uppercase">Histoire & Tradition</span>
+                                <span class="text-xs font-semibold text-slate-600 uppercase">Histoire & Tradition</span>
                             </div>
-                            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+                            <div class="liquid-glass p-5 shadow-sm">
                                 <span class="text-3xl font-extrabold text-chenier-gold block mb-1">~700 Élèves</span>
-                                <span class="text-xs font-semibold text-slate-500 uppercase">PS au CM2 (AEFE)</span>
+                                <span class="text-xs font-semibold text-slate-600 uppercase">PS au CM2 (AEFE)</span>
                             </div>
                         </div>
                     </div>
-                    <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80" alt="École" class="w-full h-full object-cover">
+                    <div class="rounded-3xl overflow-hidden liquid-glass-intense p-3 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80" alt="École" class="w-full h-full object-cover rounded-2xl">
                     </div>
                 </div>
             </div>
@@ -361,13 +446,13 @@
 
     </main>
 
-    <!-- Footer avec liens officiels et logos -->
-    <footer class="bg-chenier-750 text-white pt-16 pb-12 border-t border-white/10 mt-auto">
+    <!-- Footer Liquid Glass -->
+    <footer class="glass-dark text-white pt-16 pb-12 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
                 <div class="md:col-span-2">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl gold-gradient flex items-center justify-center text-white font-black text-xl">
+                        <div class="w-10 h-10 rounded-2xl gold-liquid-gradient flex items-center justify-center text-white font-black text-xl shadow-lg">
                             AC
                         </div>
                         <span class="text-lg font-bold tracking-tight">Blog - École André Chénier</span>
@@ -375,17 +460,17 @@
                     <p class="text-slate-300 text-sm leading-relaxed max-w-md mb-6">
                         Établissement scolaire d'excellence situé au cœur du quartier Hassan à Rabat (10000), Maroc. Plus d'un siècle d'histoire et de passion éducative.
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="https://ecole-chenier.ac.ma/" target="_blank" rel="noopener noreferrer" title="Site Web Officiel" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-chenier-gold flex items-center justify-center text-white transition"><i class="fas fa-globe"></i></a>
-                        <a href="https://www.instagram.com/ecolechenier/" target="_blank" rel="noopener noreferrer" title="Instagram Officiel" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-chenier-gold flex items-center justify-center text-white transition"><i class="fab fa-instagram"></i></a>
-                        <a href="https://web.facebook.com/p/Ecole-Andr%C3%A9-Ch%C3%A9nier-Rabat-100057398081338/?locale=fr_FR" target="_blank" rel="noopener noreferrer" title="Page Facebook Officielle" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-chenier-gold flex items-center justify-center text-white transition"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://aefe.gouv.fr/fr/etablissements/ecole-andre-chenier" target="_blank" rel="noopener noreferrer" title="Fiche AEFE" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-chenier-gold flex items-center justify-center text-white transition"><i class="fas fa-graduation-cap"></i></a>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://ecole-chenier.ac.ma/" target="_blank" rel="noopener noreferrer" title="Site Web Officiel" class="w-11 h-11 rounded-full bg-white/10 hover:bg-chenier-gold flex items-center justify-center text-white transition border border-white/20 shadow-sm"><i class="fas fa-globe"></i></a>
+                        <a href="https://www.instagram.com/ecolechenier/" target="_blank" rel="noopener noreferrer" title="Instagram Officiel" class="w-11 h-11 rounded-full bg-white/10 hover:bg-chenier-gold flex items-center justify-center text-white transition border border-white/20 shadow-sm"><i class="fab fa-instagram"></i></a>
+                        <a href="https://web.facebook.com/p/Ecole-Andr%C3%A9-Ch%C3%A9nier-Rabat-100057398081338/?locale=fr_FR" target="_blank" rel="noopener noreferrer" title="Page Facebook Officielle" class="w-11 h-11 rounded-full bg-white/10 hover:bg-chenier-gold flex items-center justify-center text-white transition border border-white/20 shadow-sm"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://aefe.gouv.fr/fr/etablissements/ecole-andre-chenier" target="_blank" rel="noopener noreferrer" title="Fiche AEFE" class="w-11 h-11 rounded-full bg-white/10 hover:bg-chenier-gold flex items-center justify-center text-white transition border border-white/20 shadow-sm"><i class="fas fa-graduation-cap"></i></a>
                     </div>
                 </div>
                 <div>
                     <h4 class="text-sm font-bold uppercase tracking-wider text-chenier-gold mb-4">Navigation rapide</h4>
                     <ul class="space-y-2 text-sm text-slate-300">
-                        <li><button onclick="switchTab('accueil')" class="hover:text-chenier-gold transition">Accueil</button></li>
+                        <li><button onclick="switchTab('accueil')" class="hover:text-chenier-gold transition flex items-center gap-1.5"><i class="fas fa-home"></i> Accueil</button></li>
                         <li><button onclick="switchTab('actualites')" class="hover:text-chenier-gold transition">Actualités</button></li>
                         <li><button onclick="switchTab('viescolaire')" class="hover:text-chenier-gold transition">Vie Scolaire</button></li>
                         <li><button onclick="switchTab('galerie')" class="hover:text-chenier-gold transition">Galerie Photos</button></li>
@@ -464,11 +549,11 @@
             }
 
             document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-chenier-600 hover:bg-slate-50 transition";
+                btn.className = "nav-btn w-12 h-12 rounded-full text-lg text-slate-600 hover:text-white hover:bg-white/40 transition flex items-center justify-center transform hover:scale-110";
             });
             const activeBtn = document.getElementById(`nav-${tabId}`);
             if (activeBtn) {
-                activeBtn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold text-chenier-600 bg-chenier-50 transition";
+                activeBtn.className = "nav-btn w-12 h-12 rounded-full text-lg instagram-bg-gradient text-white shadow-md transition flex items-center justify-center transform scale-105";
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -496,20 +581,20 @@
             const grid = document.getElementById('home-articles-grid');
             if (!grid) return;
             grid.innerHTML = articles.map(art => `
-                <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 flex flex-col justify-between group hover:shadow-2xl transition">
+                <div class="liquid-glass overflow-hidden shadow-xl flex flex-col justify-between group hover:shadow-2xl transition hover:-translate-y-1">
                     <div>
                         <div class="relative h-52 overflow-hidden bg-slate-100">
                             <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80'">
-                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-white/90 backdrop-blur-md text-chenier-600 shadow-md">
+                            <span class="absolute top-4 left-4 px-4 py-1.5 rounded-full text-xs font-bold liquid-glass text-chenier-600 shadow-md border border-white/50">
                                 ${art.category}
                             </span>
                         </div>
                         <div class="p-6">
-                            <div class="text-xs text-slate-400 mb-2 flex items-center gap-1.5">
+                            <div class="text-xs text-slate-500 mb-2 flex items-center gap-1.5">
                                 <i class="far fa-calendar-alt"></i> ${art.date}
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-chenier-600 transition line-clamp-2">${art.title}</h3>
-                            <p class="text-slate-600 text-sm line-clamp-3 mb-6">${art.summary}</p>
+                            <p class="text-slate-700 text-sm line-clamp-3 mb-6">${art.summary}</p>
                         </div>
                     </div>
                     <div class="px-6 pb-6 pt-0">
@@ -526,17 +611,17 @@
             const container = document.getElementById('actualites-list');
             if (!container) return;
             container.innerHTML = articles.map(art => `
-                <div class="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden flex flex-col md:flex-row gap-6 p-6 sm:p-8 items-center">
-                    <div class="w-full md:w-1/3 h-56 rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0">
+                <div class="liquid-glass-intense shadow-xl overflow-hidden flex flex-col md:flex-row gap-6 p-6 sm:p-8 items-center">
+                    <div class="w-full md:w-1/3 h-56 rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0 border border-white/50">
                         <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80'">
                     </div>
                     <div class="w-full md:w-2/3 space-y-3">
                         <div class="flex items-center gap-3">
-                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-chenier-50 text-chenier-600">${art.category}</span>
-                            <span class="text-xs text-slate-400"><i class="far fa-calendar-alt mr-1"></i> ${art.date}</span>
+                            <span class="px-3.5 py-1 rounded-full text-xs font-bold liquid-glass text-chenier-600 border border-white/50">${art.category}</span>
+                            <span class="text-xs text-slate-500"><i class="far fa-calendar-alt mr-1"></i> ${art.date}</span>
                         </div>
                         <h3 class="text-2xl font-bold text-slate-900">${art.title}</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">${art.summary}</p>
+                        <p class="text-slate-700 text-sm leading-relaxed">${art.summary}</p>
                         <button onclick="openArticleDetail(${art.id})" class="inline-flex items-center gap-2 text-chenier-600 font-bold text-sm hover:text-chenier-700 pt-2 transition">
                             Lire la suite <i class="fas fa-arrow-right"></i>
                         </button>
@@ -555,7 +640,7 @@
             const filterContainer = document.getElementById('article-categories-filter');
             if (filterContainer) {
                 filterContainer.innerHTML = categories.map(cat => `
-                    <button onclick="filterArticleCategory('${cat}')" class="art-cat-btn px-4 py-2 rounded-xl text-xs font-semibold transition ${currentFilterCategory === cat ? 'bg-chenier-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                    <button onclick="filterArticleCategory('${cat}')" class="art-cat-btn px-5 py-2.5 rounded-full text-xs font-semibold transition ${currentFilterCategory === cat ? 'blue-liquid-gradient text-white shadow-md' : 'liquid-glass text-slate-700'}">
                         ${cat === 'all' ? 'Toutes' : cat}
                     </button>
                 `).join('');
@@ -570,25 +655,25 @@
             const grid = document.getElementById('all-articles-grid');
             if (!grid) return;
             if (filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-3 text-center py-16 text-slate-400">Aucun article ne correspond à votre recherche.</div>`;
+                grid.innerHTML = `<div class="col-span-3 text-center py-16 text-slate-500 liquid-glass">Aucun article ne correspond à votre recherche.</div>`;
                 return;
             }
 
             grid.innerHTML = filtered.map(art => `
-                <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 flex flex-col justify-between group hover:shadow-2xl transition">
+                <div class="liquid-glass overflow-hidden shadow-xl flex flex-col justify-between group hover:shadow-2xl transition hover:-translate-y-1">
                     <div>
                         <div class="relative h-52 overflow-hidden bg-slate-100">
                             <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80'">
-                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-white/90 backdrop-blur-md text-chenier-600 shadow-md">
+                            <span class="absolute top-4 left-4 px-4 py-1.5 rounded-full text-xs font-bold liquid-glass text-chenier-600 shadow-md border border-white/50">
                                 ${art.category}
                             </span>
                         </div>
                         <div class="p-6">
-                            <div class="text-xs text-slate-400 mb-2 flex items-center gap-1.5">
+                            <div class="text-xs text-slate-500 mb-2 flex items-center gap-1.5">
                                 <i class="far fa-calendar-alt"></i> ${art.date}
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-chenier-600 transition line-clamp-2">${art.title}</h3>
-                            <p class="text-slate-600 text-sm line-clamp-3 mb-6">${art.summary}</p>
+                            <p class="text-slate-700 text-sm line-clamp-3 mb-6">${art.summary}</p>
                         </div>
                     </div>
                     <div class="px-6 pb-6 pt-0">
@@ -622,14 +707,14 @@
             if (!container) return;
             container.innerHTML = `
                 <div class="flex items-center gap-3 mb-6">
-                    <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-chenier-50 text-chenier-600">${art.category}</span>
-                    <span class="text-xs text-slate-400 flex items-center gap-1.5"><i class="far fa-calendar-alt"></i> ${art.date}</span>
+                    <span class="px-4 py-1.5 rounded-full text-xs font-bold liquid-glass text-chenier-600">${art.category}</span>
+                    <span class="text-xs text-slate-500 flex items-center gap-1.5"><i class="far fa-calendar-alt"></i> ${art.date}</span>
                 </div>
                 <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 leading-tight">${art.title}</h1>
-                <div class="rounded-2xl overflow-hidden mb-8 h-80 sm:h-96 bg-slate-100 shadow-lg">
+                <div class="rounded-3xl overflow-hidden mb-8 h-80 sm:h-96 bg-slate-100 shadow-xl border border-white/60">
                     <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80'">
                 </div>
-                <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4 text-base sm:text-lg">
+                <div class="prose max-w-none text-slate-800 leading-relaxed space-y-4 text-base sm:text-lg">
                     <p class="font-medium text-slate-900 text-lg mb-4">${art.summary}</p>
                     <p>${art.content.replace(/\n/g, '<br>')}</p>
                 </div>
@@ -643,18 +728,18 @@
             const filtered = category === 'all' ? galleryItems : galleryItems.filter(item => item.category === category);
             
             grid.innerHTML = filtered.map(item => `
-                <div onclick="openLightbox('${item.image}', '${item.title}')" class="group relative rounded-2xl overflow-hidden shadow-md bg-slate-100 h-64 cursor-pointer">
+                <div onclick="openLightbox('${item.image}', '${item.title}')" class="group relative rounded-3xl overflow-hidden shadow-xl liquid-glass h-64 cursor-pointer border border-white/60 hover:-translate-y-1 transition duration-300">
                     <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6 backdrop-blur-[2px]">
                         <span class="text-white font-semibold text-sm">${item.title}</span>
                     </div>
                 </div>
             `).join('');
 
             document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
-                btn.className = "gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-medium bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition";
+                btn.className = "gallery-filter-btn px-6 py-3 rounded-full text-sm font-medium liquid-glass text-slate-700 transition";
             });
-            event && event.target && (event.target.className = "gallery-filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-chenier-600 text-white shadow-md shadow-chenier-600/20 transition");
+            event && event.target && (event.target.className = "gallery-filter-btn px-6 py-3 rounded-full text-sm font-semibold blue-liquid-gradient text-white shadow-lg transition");
         }
 
         function filterGallery(cat) {
